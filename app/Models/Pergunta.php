@@ -12,4 +12,14 @@ class Pergunta extends Model
     protected $fillable = [
         "descricao"
     ];
+
+    public function testes()
+    {
+        return $this->belongsToMany(Teste::class);
+    }
+
+    public function respostas()
+    {
+        return $this->hasMany(Resposta::class);
+    }
 }

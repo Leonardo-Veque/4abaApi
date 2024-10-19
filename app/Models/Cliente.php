@@ -13,4 +13,10 @@ class Cliente extends Model
       "nome",
       "dataNasc"
     ];
+
+    public function respostas()
+    {
+        return $this->hasMany(Resposta::class);
+    }
 }
+

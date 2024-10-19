@@ -11,14 +11,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-
+use Illuminate\Http\RedirectResponse;
 class AuthenticatedSessionController extends Controller
 {
     /**
      * Handle an incoming authentication request.
      */
+    /*
     public function store(LoginRequest $request): JsonResponse
     {
+        
         try {
             $request->authenticate();
         } catch (ValidationException $e) {
@@ -30,7 +32,17 @@ class AuthenticatedSessionController extends Controller
 
         return response()->json(["data" => Auth::user()]);
     }
+    */
+    
+    public function store(LoginRequest $request): RedirectResponse
+    {
+        $request->authenticate();
 
+        $request->session()->regenerate();
+
+        return redirect()->intended(route('dashboard', absolute: false));
+    }
+    
     public function requestToken(LoginRequest $request)
     {
         try {

@@ -10,6 +10,16 @@ class Teste extends Model
     use HasFactory;
 
     protected $fillable = [
-      
+      'tipo'
     ];
+
+    public function perguntas()
+    {
+      return $this->belongsToMany(Pergunta::class);
+    }
+
+    public function respostas()
+    {
+        return $this->hasMany(Resposta::class);
+    }
 }
