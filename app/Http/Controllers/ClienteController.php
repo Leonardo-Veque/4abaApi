@@ -15,7 +15,7 @@ class ClienteController extends Controller
                 "dataNasc" => $request['dataNasc']
             ]);
     
-            return response()->json(["data" => "cliente cadastrado"]);
+            return response()->json(["data" => "cliente cadastrado","msg" => "de certo"]);
         } catch (\Throwable $th) {
             return response()->json(["data" => "erro ao cadastrar cliente: $th"]);
         }
