@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             "nome"  => "cli01",
             "dataNasc" => "01-02-2001"
         ]);
-        */
+        //*/
         $perg = [
             Pergunta::create(["descricao" => "Tempo você consegue se concentrar em uma tarefa antes de se distrair?"]),
             Pergunta::create(["descricao" => "Alguma diferença na sua capacidade de foco em diferentes situações?"]),
