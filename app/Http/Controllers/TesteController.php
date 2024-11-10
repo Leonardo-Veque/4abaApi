@@ -46,14 +46,23 @@ class TesteController extends Controller
             return response()->json(['err' => 'cliente ou teste nulo']);
         }
         for($i = 0;$i < count($request['respostas']);$i++) {
-            $resposta = new Resposta();
-            $resposta->cliente_id = $request['cliente'];
-            $resposta->pergunta_id = $request['IDrespostas'][$i];
-            $resposta->teste_id = $request['teste'];
-            $resposta->resposta = $request['respostas'][$i];
-            $resposta->data = Carbon::now();
-            $resposta->save();
+            $data = [
+                'cliente_id' => $request['cliente'],
+                'teste_id' => $request['teste'],
+                'pergunta_id' => $request['IDrespostas'][$i],
+                'data' => Carbon::now(),
+            ];
+            
+            $values = [
+                'resposta' => $request['respostas'][$i],
+                'updated_at' => now()
+            ];
+            
+            Resposta::updateOrInsert($data, $values);
         }
+
+        
+        
 
         return response()->json(['success' => 'Respostas salvas com sucesso!']);
     }
